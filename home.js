@@ -4,11 +4,24 @@ const closedBtn = document.getElementById('closed-Btn');
 const issueContainer = document.getElementById('issue-container');
 const countIssue = document.getElementById('count-Issue');
 const loading = document.getElementById('loading');
+const issueDetailModal = document.getElementById('issue-Detail-Modal');
+
+
+const modalTitle = document.getElementById('modal-Title');
+const modalStatus = document.getElementById('modal-Status');
+const modalParson = document.getElementById('modal-Parson');
+const modalDate = document.getElementById('modal-Date');
+const modalBadghOne = document.getElementById('modal-Badgh-One');
+const modalBadghTwo = document.getElementById('modal-Badgh-Two');
+const modalDescription = document.getElementById('modal-Description');
+const modalName = document.getElementById('modal-Name');
+const modalQuality = document.getElementById('modal-Quality');
+
 
 
 
 async function loadAllIssue() {
-  loading.classList.remove('hidden')
+  loading.classList.remove('hidden');
   loading.classList.add('flex');
   const res = await fetch(
     'https://phi-lab-server.vercel.app/api/v1/lab/issues'
@@ -28,11 +41,12 @@ async function loadAllIssue() {
       div.classList.add('border-[#A855F7]');
     }
     div.innerHTML = `
-     <div class="flex justify-between">
+     <div onclick="openModal(${issue.id})" class="space-y-3">
+     <div class="flex justify-between " >
             <img  src="${issue.status === 'open' ? './assets/Open-Status.png' : './assets/Closed- Status .png'}" alt="" />
             <p class="px-5 rounded-full bg-red-200">${issue.priority}</p>
-          </div>
-          <h3 class="font-semibold text-xl">
+          </div> 
+          <h3  class="font-semibold text-xl">
             ${issue.title}
           </h3>
           <p class="text-slate-300">
@@ -52,15 +66,13 @@ async function loadAllIssue() {
           <p class="text-slate-300">#${issue.author}</p>
           <p class="text-slate-300">${new Date(issue.createdAt).toLocaleDateString('en-GB')}</p>
 
+     </div>
    `;
     issueContainer.append(div);
   });
 
-
   countIssue.innerText = data.data.length;
 }
-
-
 
 loadAllIssue();
 
@@ -87,7 +99,7 @@ openBtn.addEventListener('click', () => {
     );
 
     const data = await res.json();
-loading.classList.add('hidden');
+    loading.classList.add('hidden');
     const issues = data.data;
     for (const open of issues) {
       if (open.status === 'open') {
@@ -96,6 +108,7 @@ loading.classList.add('hidden');
         div.className =
           'p-5 border-t-5 border-green-600 rounded-2xl bg-slate-500 max-w-100 space-y-3 card';
         div.innerHTML = `
+        <div onclick="openModal(${open.id})" class="space-y-3">
              <div class="flex justify-between">
             <img src="./assets/Open-Status.png" alt="" />
            
@@ -120,20 +133,17 @@ loading.classList.add('hidden');
           <br />
           <p class="text-slate-300">#${open.author}</p>
           <p class="text-slate-300">${new Date(open.createdAt).toLocaleDateString('en-GB')}</p>
+           </div>
 
           `;
         issueContainer.append(div);
       }
-
     }
-        
 
-countCards();
+    countCards();
   }
 
   openIssue();
-  
-
 });
 
 closedBtn.addEventListener('click', () => {
@@ -147,7 +157,7 @@ closedBtn.addEventListener('click', () => {
     );
 
     const data = await res.json();
-      loading.classList.add('hidden');
+    loading.classList.add('hidden');
 
     const issues = data.data;
     for (const closed of issues) {
@@ -157,6 +167,7 @@ closedBtn.addEventListener('click', () => {
         div.className =
           'p-5 border-t-5 border-[#A855F7] rounded-2xl bg-slate-500 max-w-100 space-y-3 card';
         div.innerHTML = `
+        <div onclick="openModal(${closed.id})" class="space-y-3">
              <div class="flex justify-between">
             <img src="./assets/closed- Status .png" alt="" />
            
@@ -181,6 +192,7 @@ closedBtn.addEventListener('click', () => {
           <br />
           <p class="text-slate-300">#by ${closed.author}</p>
           <p class="text-slate-300">${new Date(closed.createdAt).toLocaleDateString('en-GB')}</p>
+           </div>
 
           `;
         issueContainer.append(div);
@@ -191,3 +203,23 @@ closedBtn.addEventListener('click', () => {
 
   closedIssue();
 });
+
+async function openModal(issueId) {
+  const res = await fetch(
+    `https://phi-lab-server.vercel.app/api/v1/lab/issue/${issueId}`
+  );
+  const data = await res.json()
+  const singleIssue = data.data
+  
+modalTitle.innerText = singleIssue.title
+modalStatus.innerText = singleIssue.status;
+modalParson.innerText = singleIssue.author;
+modalDate.innerText = `${new Date(singleIssue.createdAt).toLocaleDateString('en-GB')}`;
+modalBadghOne.innerText = singleIssue.labels[0]
+modalBadghTwo.innerText = singleIssue.labels[1]
+modalDescription.innerText = singleIssue.description;
+modalName.innerText = singleIssue.author;
+modalQuality.innerText = singleIssue.priority;
+
+  issueDetailModal.showModal();
+}

@@ -86,19 +86,45 @@
       <section
         id="issue-container"
         class="mt-10 grid grid-cols-4 space-y-3 space-x-3"
+      ></section>
+      <div
+        id="loading"
+        class="h-screen w-full flex justify-center items-center"
       >
-        
-      </section>
-      <div id="loading" class="h-screen w-full flex justify-center items-center">
-          <span class="loading loading-spinner loading-xl"></span>
-        </div>
+        <span class="loading loading-spinner loading-xl"></span>
+      </div>
 
       <!-- Open the modal using ID.showModal() method -->
-      <button class="btn" onclick="my_modal_1.showModal()">open modal</button>
-      <dialog id="my_modal_1" class="modal">
-        <div class="modal-box">
-          <h3 class="text-lg font-bold">Hello!</h3>
-          <p class="py-4">Press ESC key or click the button below to close</p>
+    
+      <dialog id="issue-Detail-Modal" class="modal">
+        <div class="modal-box space-y-5 p-10 bg-stone-200">
+          <h3 id="modal-Title" class="text-lg font-bold">Fix broken image uploads</h3>
+          <div class="flex gap-3">
+            <div id="modal-Status" class="badge badge-success text-gray-100">Opened</div>
+            <p class="text-gray-600 text-sm">• Opened by <span id="modal-Parson" >Fahim Ahmed</span></p>
+            <span id="modal-Date" class="text-gray-600 text-sm">• 22/02/2026</span>
+          </div>
+          <div id="modal-Badgh-One" class="badge badge-soft badge-error">
+            <i class="fa-solid fa-bug"></i>
+            BUG
+          </div>
+          <div id="modal-Badgh-Two" class="badge badge-soft badge-warning">
+            <i class="fa-solid fa-helicopter-symbol"></i>help wanted
+          </div>
+          <p id="modal-Description" class="py-4">
+            The navigation menu doesn't collapse properly on mobile devices.
+            Need to fix the responsive behavior.
+          </p>
+          <div class="flex gap-20 bg-slate-200 p-4 rounded-xl">
+            <div class="space-y-2">
+              <p class=" text-gray-600">Assignee:</p>
+              <p id="modal-Name" class="font-bold">Fahim Ahmed</p>
+            </div>
+            <div class="space-y-2">
+              <p class=" text-gray-600">Priority:</p>
+              <p id="modal-Quality" class="px-5 rounded-full bg-red-400">HIGH</p>
+            </div>
+          </div>
           <div class="modal-action">
             <form method="dialog">
               <!-- if there is a button in form, it will close the modal -->
