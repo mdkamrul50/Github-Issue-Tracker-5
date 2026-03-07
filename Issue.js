@@ -8,7 +8,7 @@ loginBtn.addEventListener('click', () => {
   const userPassword = userPasswordInput.value;
 
 if (userName == 'admin' && userPassword == 'admin123') {
- window.location.assign('Github-Issue-Tracker-5/home.html');
+window.location.href = './home.html';
 
 } else {
   return alert('Invalid info');
