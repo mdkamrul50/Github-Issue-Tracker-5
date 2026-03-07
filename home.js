@@ -6,7 +6,6 @@ const countIssue = document.getElementById('count-Issue');
 const loading = document.getElementById('loading');
 const issueDetailModal = document.getElementById('issue-Detail-Modal');
 
-
 const modalTitle = document.getElementById('modal-Title');
 const modalStatus = document.getElementById('modal-Status');
 const modalParson = document.getElementById('modal-Parson');
@@ -16,6 +15,22 @@ const modalBadghTwo = document.getElementById('modal-Badgh-Two');
 const modalDescription = document.getElementById('modal-Description');
 const modalName = document.getElementById('modal-Name');
 const modalQuality = document.getElementById('modal-Quality');
+
+
+function toggleBtn(id) {
+  BtnS = document.querySelectorAll('.toggle-btn').forEach(btn => {
+    console.log(btn);
+  btn.classList.remove('bg-blue-500' ,'text-white')
+  });
+
+    const activeBtn = document.getElementById(id);
+     
+    activeBtn.classList.add('bg-blue-500', 'text-white');
+ 
+
+  
+}
+  
 
 
 
@@ -84,11 +99,14 @@ function countCards() {
 
 allBtn.addEventListener('click', () => {
   issueContainer.innerHTML = '';
+  
 
   loadAllIssue();
+  
 });
 
 openBtn.addEventListener('click', () => {
+
   issueContainer.innerHTML = '';
 
   async function openIssue() {
@@ -144,9 +162,11 @@ openBtn.addEventListener('click', () => {
   }
 
   openIssue();
+
 });
 
 closedBtn.addEventListener('click', () => {
+
   issueContainer.innerHTML = '';
 
   async function closedIssue() {
@@ -202,24 +222,25 @@ closedBtn.addEventListener('click', () => {
   }
 
   closedIssue();
+
 });
 
 async function openModal(issueId) {
   const res = await fetch(
     `https://phi-lab-server.vercel.app/api/v1/lab/issue/${issueId}`
   );
-  const data = await res.json()
-  const singleIssue = data.data
-  
-modalTitle.innerText = singleIssue.title
-modalStatus.innerText = singleIssue.status;
-modalParson.innerText = singleIssue.author;
-modalDate.innerText = `${new Date(singleIssue.createdAt).toLocaleDateString('en-GB')}`;
-modalBadghOne.innerText = singleIssue.labels[0]
-modalBadghTwo.innerText = singleIssue.labels[1]
-modalDescription.innerText = singleIssue.description;
-modalName.innerText = singleIssue.author;
-modalQuality.innerText = singleIssue.priority;
+  const data = await res.json();
+  const singleIssue = data.data;
+
+  modalTitle.innerText = singleIssue.title;
+  modalStatus.innerText = singleIssue.status;
+  modalParson.innerText = singleIssue.author;
+  modalDate.innerText = `${new Date(singleIssue.createdAt).toLocaleDateString('en-GB')}`;
+  modalBadghOne.innerText = singleIssue.labels[0];
+  modalBadghTwo.innerText = singleIssue.labels[1];
+  modalDescription.innerText = singleIssue.description;
+  modalName.innerText = singleIssue.author;
+  modalQuality.innerText = singleIssue.priority;
 
   issueDetailModal.showModal();
 }

@@ -51,9 +51,9 @@
 
     <main class="container mx-auto">
       <div class="mt-14 bg-slate-200 py-4 space-x-2">
-        <button id="all-Btn" class="btn px-10 ml-4">All</button>
-        <button id="open-Btn" class="btn px-10">Open</button>
-        <button id="closed-Btn" class="btn px-10">Closed</button>
+        <button onclick="toggleBtn('all-Btn')" id="all-Btn" class="btn px-10 ml-4 bg-blue-500 text-white toggle-btn">All</button>
+        <button onclick="toggleBtn('open-Btn')" id="open-Btn" class="btn px-10 toggle-btn">Open</button>
+        <button onclick="toggleBtn('closed-Btn')" id="closed-Btn" class="btn px-10 toggle-btn">Closed</button>
       </div>
       <div
         class="mt-14 bg-slate-200 py-4 space-x-2 flex justify-between px-4 items-center"
