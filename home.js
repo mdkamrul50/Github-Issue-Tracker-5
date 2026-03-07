@@ -5,6 +5,8 @@ const issueContainer = document.getElementById('issue-container');
 const countIssue = document.getElementById('count-Issue');
 const loading = document.getElementById('loading');
 const issueDetailModal = document.getElementById('issue-Detail-Modal');
+const findIssue = document.getElementById('find-Issue');
+const inputFind = document.getElementById('input-Fild');
 
 const modalTitle = document.getElementById('modal-Title');
 const modalStatus = document.getElementById('modal-Status');
@@ -16,24 +18,16 @@ const modalDescription = document.getElementById('modal-Description');
 const modalName = document.getElementById('modal-Name');
 const modalQuality = document.getElementById('modal-Quality');
 
-
 function toggleBtn(id) {
-  BtnS = document.querySelectorAll('.toggle-btn').forEach(btn => {
+  BtnS = document.querySelectorAll('.toggle-btn').forEach((btn) => {
     console.log(btn);
-  btn.classList.remove('bg-blue-500' ,'text-white')
+    btn.classList.remove('bg-blue-500', 'text-white');
   });
 
-    const activeBtn = document.getElementById(id);
-     
-    activeBtn.classList.add('bg-blue-500', 'text-white');
- 
+  const activeBtn = document.getElementById(id);
 
-  
+  activeBtn.classList.add('bg-blue-500', 'text-white');
 }
-  
-
-
-
 
 async function loadAllIssue() {
   loading.classList.remove('hidden');
@@ -99,14 +93,11 @@ function countCards() {
 
 allBtn.addEventListener('click', () => {
   issueContainer.innerHTML = '';
-  
 
   loadAllIssue();
-  
 });
 
 openBtn.addEventListener('click', () => {
-
   issueContainer.innerHTML = '';
 
   async function openIssue() {
@@ -162,11 +153,9 @@ openBtn.addEventListener('click', () => {
   }
 
   openIssue();
-
 });
 
 closedBtn.addEventListener('click', () => {
-
   issueContainer.innerHTML = '';
 
   async function closedIssue() {
@@ -222,7 +211,6 @@ closedBtn.addEventListener('click', () => {
   }
 
   closedIssue();
-
 });
 
 async function openModal(issueId) {
@@ -244,3 +232,66 @@ async function openModal(issueId) {
 
   issueDetailModal.showModal();
 }
+
+async function search()  {
+  const inputValue = inputFind.value.trim().toLowerCase();
+  // console.log(inputValue);
+  const res = await fetch(
+    `https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${inputValue}`
+  );
+
+  const data = await res.json();
+ 
+const allIssue = data.data;
+// console.log(allIssue);
+const filterIssue = allIssue.filter(Issue =>{
+  return Issue.title.toLowerCase().includes(inputValue);
+})
+ issueContainer.innerHTML = '';
+  filterIssue.forEach((issue) => {
+    // console.log(issue);
+   
+    const div = document.createElement('div');
+    div.className =
+      'p-5 border-t-5  rounded-2xl bg-slate-500 max-w-100 space-y-3';
+    if (issue.status === 'open') {
+      div.classList.add('border-green-600');
+    } else if (issue.status === 'closed') {
+      div.classList.remove('border-green-600');
+      div.classList.add('border-[#A855F7]');
+    }
+    div.innerHTML = `
+     <div onclick="openModal(${issue.id})" class="space-y-3">
+     <div class="flex justify-between " >
+            <img  src="${issue.status === 'open' ? './assets/Open-Status.png' : './assets/Closed- Status .png'}" alt="" />
+            <p class="px-5 rounded-full bg-red-200">${issue.priority}</p>
+          </div> 
+          <h3  class="font-semibold text-xl">
+            ${issue.title}
+          </h3>
+          <p class="text-slate-300">
+            ${issue.description}
+          </p>
+          <div class="">
+            <div class="badge badge-soft badge-error">
+              <i class="fa-solid fa-bug"></i>${issue.labels[0]}
+            </div>
+            <div class="badge badge-soft badge-warning">
+              <i class="fa-solid fa-helicopter-symbol"></i>${issue.labels[1] ? issue.labels[1] : ''}
+            </div>
+          </div>
+          <br />
+          <hr />
+          <br />
+          <p class="text-slate-300">#${issue.author}</p>
+          <p class="text-slate-300">${new Date(issue.createdAt).toLocaleDateString('en-GB')}</p>
+
+     </div>
+   `;
+    issueContainer.append(div);
+    
+  });
+
+const searchCount = filterIssue.length;
+countIssue.innerText = searchCount;
+};

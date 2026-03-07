@@ -41,10 +41,10 @@
           <div>
             <label class="input validator join-item">
               <i class="fa-solid fa-magnifying-glass"></i>
-              <input type="text" placeholder="Search issues..." required />
+              <input id="input-Fild" type="text" placeholder="Search issues..." required />
             </label>
           </div>
-          <button class="btn bg-blue-500 join-item">+New Issue</button>
+          <button onclick="search()" id="find-Issue" class="btn bg-blue-500 join-item text-white">+New Issue</button>
         </div>
       </nav>
     </header>
@@ -94,7 +94,7 @@
         <span class="loading loading-spinner loading-xl"></span>
       </div>
 
-      <!-- Open the modal using ID.showModal() method -->
+      
     
       <dialog id="issue-Detail-Modal" class="modal">
         <div class="modal-box space-y-5 p-10 bg-stone-200">
@@ -127,7 +127,7 @@
           </div>
           <div class="modal-action">
             <form method="dialog">
-              <!-- if there is a button in form, it will close the modal -->
+            
               <button class="btn">Close</button>
             </form>
           </div>
