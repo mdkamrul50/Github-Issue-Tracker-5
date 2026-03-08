@@ -17,31 +17,32 @@
       href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="style.css">
     <style>
       * {
         font-family: 'Geist', sans-serif;
       }
     </style>
   </head>
-  <body class="flex items-center h-screen">
-    <section class="loging-section md:w-[30%] w-[70%] mx-auto p-10 shadow-lg space-y-5 rounded-xl hover:shadow-2xl hover:bg-blue-200 transition duration-300">
+  <body class="flex items-center h-screen bg-slate-500">
+    <section class="loging-section md:w-[30%] w-[70%] mx-auto p-10 shadow-lg space-y-5 rounded-xl hover:shadow-2xl hover:bg-blue-200 transition duration-300 animated">
       <div class="flex flex-col items-center gap-2">
         <img src="./assets/github-logo.png" alt="" />
         <h2 class="text-3xl font-semibold">GitHub Issues Tracker</h2>
-        <p class="text-[#64748B] font-medium ">Sign in to manage your issues</p>
+        <p class="text-[#8da0ba] font-medium ">Sign in to manage your issues</p>
       </div>
       <div class="login-form flex   justify-center">
         <fieldset class="fieldset w-full  p-4">
   
   <label class="label text-xl text-black">Username</label>
-  <input id="username-Input" type="email" class="input w-full" placeholder="Enter Username" />
+  <input id="username-Input" type="text" class="input w-full bg-gray-300" placeholder="Enter Username" />
   <p class="text-blue-500 font-medium mb-2">Default:admin</p>
 
   <label class="label text-xl text-black">Password</label>
-  <input id="user-password" type="password" class="input w-full" placeholder="Enter Password" />
+  <input id="user-password" type="password" class="input w-full bg-gray-300" placeholder="Enter Password" />
   <p class="text-blue-500 font-medium">Default:admin123</p>
 
-  <button id="loginBtn" class="btn bg-blue-600 mt-4 w-full text-white rounded-md">Login</button>
+  <button id="loginBtn" class="btn bg-blue-600 mt-4 w-full text-white rounded-md border-none">Login</button>
 </fieldset>
       </div>
     </section>
