@@ -42,7 +42,7 @@ async function loadAllIssue() {
   data.data.forEach((issue) => {
     const div = document.createElement('div');
     div.className =
-      'p-5 border-t-5  rounded-2xl bg-slate-500 max-w-100 space-y-3';
+      'p-5 border-t-5  rounded-2xl bg-slate-500 max-w-100 space-y-3 transform transition duration-300 hover:scale-103 hover:cursor-pointer hover:bg-slate-600';
     if (issue.status === 'open') {
       div.classList.add('border-green-600');
     } else if (issue.status === 'closed') {
@@ -115,7 +115,7 @@ openBtn.addEventListener('click', () => {
         console.log(open);
         const div = document.createElement('div');
         div.className =
-          'p-5 border-t-5 border-green-600 rounded-2xl bg-slate-500 max-w-100 space-y-3 card';
+          'p-5 border-t-5 border-green-600 rounded-2xl bg-slate-500 max-w-100 space-y-3 card transform transition duration-300 hover:scale-103 hover:cursor-pointer hover:bg-slate-600';
         div.innerHTML = `
         <div onclick="openModal(${open.id})" class="space-y-3">
              <div class="flex justify-between">
@@ -174,7 +174,7 @@ closedBtn.addEventListener('click', () => {
         console.log(closed);
         const div = document.createElement('div');
         div.className =
-          'p-5 border-t-5 border-[#A855F7] rounded-2xl bg-slate-500 max-w-100 space-y-3 card';
+          'p-5 border-t-5 border-[#A855F7] rounded-2xl bg-slate-500 max-w-100 space-y-3 card transform transition duration-300 hover:scale-103 hover:cursor-pointer hover:bg-slate-600';
         div.innerHTML = `
         <div onclick="openModal(${closed.id})" class="space-y-3">
              <div class="flex justify-between">
@@ -253,7 +253,7 @@ const filterIssue = allIssue.filter(Issue =>{
    
     const div = document.createElement('div');
     div.className =
-      'p-5 border-t-5  rounded-2xl bg-slate-500 max-w-100 space-y-3';
+      'p-5 border-t-5  rounded-2xl bg-slate-500 max-w-100 space-y-3 transform transition duration-300 hover:scale-103 hover:cursor-pointer hover:bg-slate-600';
     if (issue.status === 'open') {
       div.classList.add('border-green-600');
     } else if (issue.status === 'closed') {
