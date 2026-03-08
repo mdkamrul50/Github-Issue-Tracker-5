@@ -24,15 +24,16 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    <link rel="stylesheet" href="style.css">
     <style>
       * {
         font-family: 'Geist', sans-serif;
       }
     </style>
   </head>
-  <body class="bg-blue-200">
-    <header class="bg-slate-100">
-      <nav class="flex flex-col md:flex-row justify-center md:justify-between gap-2 md:gap-0 w-11/12 mx-auto py-6 items-center">
+  <body class="bg-gray-600">
+    <header class="bg-gradient-to-r from-purple-300 to-blue-300">
+      <nav class="flex flex-col md:flex-row justify-center md:justify-between gap-2 md:gap-0 w-11/12 mx-auto py-6 items-center ">
         <div class="flex items-center gap-2">
           <img class="h-8" src="./assets/github-logo.png" alt="" />
           <p class="text-2xl font-semibold">GitHub Issues Tracker</p>
@@ -44,19 +45,19 @@
               <input id="input-Fild" type="text" placeholder="Search issues..." required />
             </label>
           </div>
-          <button onclick="search()" id="find-Issue" class="btn bg-blue-500 join-item text-white">+New Issue</button>
+          <button onclick="search()" id="find-Issue" class="btn border-none bg-blue-500 join-item text-white">+New Issue</button>
         </div>
       </nav>
     </header>
 
     <main class="container mx-auto">
-      <div class="mt-14 bg-slate-200 py-4 space-x-2 space-y-3 md:space-y-0 ">
+      <div class="mt-14 bg-emerald-100 py-4 space-x-2 space-y-3 md:space-y-0 rounded-2xl">
         <button onclick="toggleBtn('all-Btn')" id="all-Btn" class="btn px-10 ml-4 bg-blue-500 text-white toggle-btn">All</button>
         <button onclick="toggleBtn('open-Btn')" id="open-Btn" class="btn px-10 toggle-btn">Open</button>
         <button onclick="toggleBtn('closed-Btn')" id="closed-Btn" class="btn px-10 toggle-btn ml-4 md:ml-0">Closed</button>
       </div>
       <div
-        class="mt-14 bg-slate-200 py-4 space-x-2 flex flex-col md:flex-row  justify-between px-4 items-start md:items-center space-y-8 md:space-y-0 "
+        class="mt-14 bg-emerald-100 py-4 space-x-2 flex flex-col md:flex-row  justify-between px-4 items-start md:items-center space-y-8 md:space-y-0 rounded-2xl "
       >
         <div class="">
           <div class="flex">

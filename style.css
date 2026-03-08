@@ -1,0 +1,24 @@
+.animated{
+  background: linear-gradient(
+    270deg,
+    rgba(38, 39, 88, 0.295),
+    rgba(67, 39, 94, 0.5),
+    rgba(185, 56, 121, 0.5),
+    rgba(21, 87, 45, 0.5),
+    rgba(7, 77, 90, 0.5)
+  );
+  background-size: 800% 800%;
+  animation: gradientFlow 10s ease infinite;
+}
+
+@keyframes gradientFlow{
+  0%{
+    background-position: 0% 50%;
+  }
+  50%{
+    background-position: 100% 50%;
+  }
+  100%{
+    background-position: 0% 50%;
+  }
+}
